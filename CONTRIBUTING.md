@@ -16,7 +16,7 @@ Pretty much just follow the [Microsoft Guidelines for C#](https://msdn.microsoft
 - Work should be `PR'ed` to the `Development` branch -unless it is for a feature that has a specific branch.
 
 ### Issues
-*placeholder should be filled with link to issues with ready label*
+[These issues are ready to go](https://github.com/TycheOrg/Tyche/labels/ready)
 #### Pull Requests
 - A `PR` that contains a major change should be connected to an issue. For small changes go straight to the `PR`
   - It is okay to open the `issue` and `pull request` at the same time.
