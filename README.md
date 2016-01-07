@@ -1,5 +1,7 @@
 #Tyche
 
+[![Join the chat at https://gitter.im/TycheOrg/Tyche](https://badges.gitter.im/TycheOrg/Tyche.svg)](https://gitter.im/TycheOrg/Tyche?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [Tyche](https://en.wikipedia.org/wiki/Tyche) was the Greek god of fortune. (In Rome she is know as Fortuna).
 Tyche can be used to generate random names for releases or anything else your :heart: may desire.
 
