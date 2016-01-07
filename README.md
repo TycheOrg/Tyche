@@ -2,6 +2,7 @@
 
 [Tyche](https://en.wikipedia.org/wiki/Tyche) was the Greek god of fortune. (In Rome she is know as Fortuna).
 Tyche can be used to generate random names for releases or anything else your :heart: may desire.
+
 Names are generated as pairs along the following theme: `{morpheme} {item from a given (or randomized) category}`.
 Each name that is generated is stored so as to ensure names are unique.
 
@@ -67,6 +68,6 @@ Please see the [docs](docs) to learn about the `Source` api, and how to write yo
 ##Future
 Please see the [Roadmap](Roadmap.md) to see what the future may hold for Tyche.
 ##See Also
-*placeholder to be filled with link to TycheOrg/Home*
+See [TycheOrg home repo](https://github.com/TycheOrg/Home) for a general roadmap of the ecosystem.
 ##License
 This project is released under the the MIT License. <br/> Please refer to the [LICENSE file](LICENSE) for full details.
