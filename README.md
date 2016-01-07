@@ -5,6 +5,19 @@ Tyche can be used to generate random names for releases or anything else your :h
 
 Names are generated as pairs along the following theme: `{morpheme} {item from a given (or randomized) category}`.
 Each name that is generated is stored so as to ensure names are unique.
+##TOC
+- [Contributions](#contributions)
+- [General](#general)
+- [API](#api)
+ - [Generate](#generate)
+   - [Category Specified](#category-specified)
+   - [No Fail on invalid category](#no-fail-on-invalid-category)
+ - [GetAvailableCategories](#getavailablecategories)
+ - [SavePreviousNames](#savepreviousnames)
+ - [ResetPreviousNames](#resetpreviousnames)
+- [Source](#source)
+- [See Also](#see-also)
+- [License](#license)
 
 ##Contributions
 Contributions are quite welcome. Please just read the [Guidelines](CONTRIBUTING.md) first.
