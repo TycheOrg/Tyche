@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tyche", "Tyche\Tyche.csproj", "{CB2479FD-0EC3-4293-A302-7AEE39557394}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tyche.Tests", "Tyche.Tests\Tyche.Tests.csproj", "{E594ECCD-A8F2-41F2-9BEB-E816731A5833}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Meta", "Meta", "{01E71929-B964-4354-A16E-AB9CC777B731}"
+	ProjectSection(SolutionItems) = preProject
+		CONTRIBUTING.md = CONTRIBUTING.md
+		License.md = License.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{6181B834-57C9-45E3-8F6D-58545F9FBF1F}"
+	ProjectSection(SolutionItems) = preProject
+		docs\ISource.md = docs\ISource.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CB2479FD-0EC3-4293-A302-7AEE39557394}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB2479FD-0EC3-4293-A302-7AEE39557394}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB2479FD-0EC3-4293-A302-7AEE39557394}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB2479FD-0EC3-4293-A302-7AEE39557394}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E594ECCD-A8F2-41F2-9BEB-E816731A5833}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E594ECCD-A8F2-41F2-9BEB-E816731A5833}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E594ECCD-A8F2-41F2-9BEB-E816731A5833}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E594ECCD-A8F2-41F2-9BEB-E816731A5833}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
