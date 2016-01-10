@@ -34,7 +34,7 @@ namespace Tyche
         public DefaultSource()
         {
             previousNamesFilePath = Path.Combine(Directory.GetCurrentDirectory(), ".release-name-generator", "previousNames.json");
-            libPath = Path.Combine(Directory.GetCurrentDirectory(), "Lib");
+            libPath = Path.Combine(Directory.GetCurrentDirectory(), "Data");
             morphemesPath = Path.Combine(libPath, "adjectives.json");
             categoryDirectoryPath = Path.Combine(libPath, "Categories");
             categoryFilesPaths = new Dictionary<string, string>

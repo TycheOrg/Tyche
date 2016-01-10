@@ -62,22 +62,22 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Lib\adjectives.json">
+    <None Include="Data\adjectives.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Lib\Categories\birds.json">
+    <None Include="Data\Categories\birds.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Lib\Categories\fish.json">
+    <None Include="Data\Categories\fish.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Lib\Categories\lizards.json">
+    <None Include="Data\Categories\lizards.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Lib\Categories\mammals.json">
+    <None Include="Data\Categories\mammals.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Lib\Categories\reptiles.json">
+    <None Include="Data\Categories\reptiles.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
