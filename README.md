@@ -1,6 +1,6 @@
 #Tyche
 
-[Tyche](https://en.wikipedia.org/wiki/Tyche) was the Greek god of fortune. (In Rome she is know as Fortuna).
+[Tyche](https://en.wikipedia.org/wiki/Tyche) is the Greek god of fortune. (In Rome she is know as Fortuna).
 Tyche can be used to generate random names for releases or anything else your :heart: may desire.
 
 Names are generated as pairs along the following theme: `{morpheme} {item from a given (or randomized) category}`.

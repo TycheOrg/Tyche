@@ -12,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Meta", "Meta", "{01E71929-B
 		CONTRIBUTING.md = CONTRIBUTING.md
 		License.md = License.md
 		README.md = README.md
+		Roadmap.md = Roadmap.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{6181B834-57C9-45E3-8F6D-58545F9FBF1F}"
