@@ -22,6 +22,16 @@ namespace Tyche
         public string Generate(string category = null, bool failOnInvalidCatgeory = true)
         {
             var categories = GetAvailableCategories().ToList();
+            if (!categories.Any())
+            {
+                return "";
+            }
+
+            if (!Source.Categories.Any(c => c.Value.Any()) || !Source.Morphemes.Any())
+            {
+                return "";
+            }
+
             if (string.IsNullOrWhiteSpace(category))
             {
                 category = _.List.Shuffle(categories).First();
