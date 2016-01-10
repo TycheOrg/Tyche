@@ -47,6 +47,17 @@ namespace Tyche.Tests
         }
 
         [TestMethod]
+        [ExpectedException(typeof(StackOverflowException))]
+        public void AllCombinationsGeneratedAlreadyThrowsException()
+        {
+            var g = new Generator(new TestSource(Data.Morphemes, null, Data.Categories));
+            for (int i = 0; i < 50; i++)
+            {
+                g.Generate();
+            }
+        }
+
+        [TestMethod]
         public void FirstLettersAreTheSame()
         {
             var g = new Generator();
