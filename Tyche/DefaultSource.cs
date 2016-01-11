@@ -10,11 +10,7 @@ namespace Tyche
 {
     public class DefaultSource : ISource
     {
-        private string libPath;
-        private string categoryDirectoryPath;
-        private string morphemesPath;
         private string previousNamesFilePath;
-        private Dictionary<string, string> categoryFilesPaths = new Dictionary<string, string>();
 
         /// <summary>
         /// Words availble to use in generation. Divided by category with the category name as the key.
@@ -34,18 +30,8 @@ namespace Tyche
         public DefaultSource()
         {
             previousNamesFilePath = Path.Combine(Directory.GetCurrentDirectory(), ".release-name-generator", "previousNames.json");
-            libPath = Path.Combine(Directory.GetCurrentDirectory(), "Data");
-            morphemesPath = Path.Combine(libPath, "adjectives.json");
-            categoryDirectoryPath = Path.Combine(libPath, "Categories");
-            categoryFilesPaths = new Dictionary<string, string>
-            {
-                ["Birds"] = Path.Combine(categoryDirectoryPath, "birds.json"),
-                ["Fish"] = Path.Combine(categoryDirectoryPath, "fish.json"),
-                ["Lizards"] = Path.Combine(categoryDirectoryPath, "lizards.json"),
-                ["Reptiles"] = Path.Combine(categoryDirectoryPath, "reptiles.json"),
-                ["Mammals"] = Path.Combine(categoryDirectoryPath, "mammals.json")
-            };
-
+            Morphemes = Data.Morphemes;
+            Categories = Data.Categories;
             Init();
             Load();
         }
@@ -60,16 +46,9 @@ namespace Tyche
         {
             File.WriteAllText(previousNamesFilePath, JsonConvert.SerializeObject(PreviousNames));
         }
-
         private void Load()
         {
             PreviousNames = JsonConvert.DeserializeObject<List<string>>(File.ReadAllText(previousNamesFilePath)) ?? new List<string>();
-            Morphemes = JsonConvert.DeserializeObject<List<string>>(File.ReadAllText(morphemesPath)) ?? new List<string>();
-
-            foreach (var categoryFile in categoryFilesPaths)
-            {
-                Categories.Add(categoryFile.Key.ToString(), JsonConvert.DeserializeObject<List<string>>(File.ReadAllText(categoryFile.Value)) ?? new List<string>());
-            }
         }
 
         private void Init()
@@ -80,28 +59,67 @@ namespace Tyche
                 var d = Directory.CreateDirectory(f.DirectoryName);
                 d.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
 #pragma warning disable CS0642 // Possible mistaken empty statement
-                using (File.Create(previousNamesFilePath));
+                using (File.Create(previousNamesFilePath)) ;
 #pragma warning restore CS0642 // Possible mistaken empty statement
-            }
-
-            var filesToCreate = new List<string>
-            {
-                morphemesPath,
-            };
-
-            filesToCreate.AddRange(categoryFilesPaths.Select(kev => kev.Value));
-
-            foreach (var file in filesToCreate)
-            {
-                if (!File.Exists(file))
-                {
-                    FileInfo f = new FileInfo(file);
-                    Directory.CreateDirectory(f.DirectoryName);
-#pragma warning disable CS0642 // Possible mistaken empty statement
-                    using (File.Create(file)) ;
-#pragma warning restore CS0642 // Possible mistaken empty statement
-                }
             }
         }
+
+        #region Data
+
+        private static class Data
+        {
+            internal static List<string> Morphemes { get; } = new List<string>
+            {
+                "Abandoned","Able","Absolute","Adorable","Adventurous","Academic","Acceptable","Acclaimed","Accomplished","Accurate","Aching","Acidic","Acrobatic","Active","Actual","Adept","Admirable","Admired","Adolescent","Adored","Advanced","Afraid","Affectionate","Aged","Aggravating","Aggressive","Agile","Agitated","Agonizing","Agreeable","Ajar","Alarmed","Alarming","Alert","Alienated","Alive","All","Altruistic","Amazing","Ambitious","Ample","Amused","Amusing","Anchored","Ancient","Angelic","Angry","Anguished","Animated","Annual","Another","Antique","Anxious","Any","Apprehensive","Appropriate","Apt","Arctic","Arid","Aromatic","Artistic","Ashamed","Assured","Astonishing","Athletic","Attached","Attentive","Attractive","Austere","Authentic","Authorized","Automatic","Avaricious","Average","Aware","Awesome","Awful","Awkward",
+                "Babyish","Bad","Back","Baggy","Bare","Barren","Basic","Beautiful","Belated","Beloved","Beneficial","Better","Best","Bewitched","Big","Big-hearted","Biodegradable","Bite-sized","Bitter","Black","Black-and-white","Bland","Blank","Blaring","Bleak","Blind","Blissful","Blond","Blue","Blushing","Bogus","Boiling","Bold","Bony","Boring","Bossy","Both","Bouncy","Bountiful","Bowed","Brave","Breakable","Brief","Bright","Brilliant","Brisk","Broken","Bronze","Brown","Bruised","Bubbly","Bulky","Bumpy","Buoyant","Burdensome","Burly","Bustling","Busy","Buttery","Buzzing",
+                "Calculating","Calm","Candid","Canine","Capital","Carefree","Careful","Careless","Caring","Cautious","Cavernous","Celebrated","Charming","Cheap","Cheerful","Cheery","Chief","Chilly","Chubby","Circular","Classic","Clean","Clear","Clear-cut","Clever","Close","Closed","Cloudy","Clueless","Clumsy","Cluttered","Coarse","Cold","Colorful","Colorless","Colossal","Comfortable","Common","Compassionate","Competent","Complete","Complex","Complicated","Composed","Concerned","Concrete","Confused","Conscious","Considerate","Constant","Content","Conventional","Cooked","Cool","Cooperative","Coordinated","Corny","Corrupt","Costly","Courageous","Courteous","Crafty","Crazy","Creamy","Creative","Creepy","Criminal","Crisp","Critical","Crooked","Crowded","Cruel","Crushing","Cuddly","Cultivated","Cultured","Cumbersome","Curly","Curvy","Cute","Cylindrical",
+                "Damaged","Damp","Dangerous","Dapper","Daring","Darling","Dark","Dazzling","Dead","Deadly","Deafening","Dear","Dearest","Decent","Decimal","Decisive","Deep","Defenseless","Defensive","Defiant","Deficient","Definite","Definitive","Delayed","Delectable","Delicious","Delightful","Delirious","Demanding","Dense","Dental","Dependable","Dependent","Descriptive","Deserted","Detailed","Determined","Devoted","Different","Difficult","Digital","Diligent","Dim","Dimpled","Dimwitted","Direct","Disastrous","Discrete","Disfigured","Disgusting","Disloyal","Dismal","Distant","Downright","Dreary","Dirty","Disguised","Dishonest","Distinct","Distorted","Dizzy","Dopey","Doting","Double","Drab","Drafty","Dramatic","Droopy","Dry","Dual","Dull","Dutiful",
+                "Each","Eager","Earnest","Early","Easy","Easy-going","Ecstatic","Edible","Educated","Elaborate","Elastic","Elated","Elderly","Electric","Elegant","Elementary","Elliptical","Embarrassed","Embellished","Eminent","Emotional","Empty","Enchanted","Enchanting","Energetic","Enlightened","Enormous","Enraged","Entire","Envious","Equal","Equatorial","Essential","Esteemed","Ethical","Euphoric","Even","Evergreen","Everlasting","Every","Evil","Exalted","Excellent","Exemplary","Exhausted","Excitable","Excited","Exciting","Exotic","Expensive","Experienced","Expert","Extraneous","Extroverted","Extra-large","Extra-small",
+                "Fabulous","Failing","Faint","Fair","Faithful","Fake","False","Familiar","Famous","Fancy","Fantastic","Far","Faraway","Far-flung","Far-off","Fast","Fat","Fatal","Fatherly","Favorable","Favorite","Fearful","Fearless","Feisty","Feline","Female","Feminine","Few","Fickle","Filthy","Fine","Finished","Firm","First","Firsthand","Fitting","Fixed","Flaky","Flamboyant","Flashy","Flat","Flawed","Flawless","Flickering","Flimsy","Flippant","Flowery","Fluffy","Fluid","Flustered","Focused","Fond","Foolhardy","Foolish","Forceful","Forked","Formal","Forsaken","Forthright","Fortunate","Fragrant","Frail","Frank","Frayed","Free","French","Fresh","Frequent","Friendly","Frightened","Frightening","Frigid","Frilly","Frizzy","Frivolous","Front","Frosty","Frozen","Frugal","Fruitful","Full","Fumbling","Functional","Funny","Fussy","Fuzzy",
+                "Gargantuan","Gaseous","General","Generous","Gentle","Genuine","Giant","Giddy","Gigantic","Gifted","Giving","Glamorous","Glaring","Glass","Gleaming","Gleeful","Glistening","Glittering","Gloomy","Glorious","Glossy","Glum","Golden","Good","Good-natured","Gorgeous","Graceful","Gracious","Grand","Grandiose","Granular","Grateful","Grave","Gray","Great","Greedy","Green","Gregarious","Grim","Grimy","Gripping","Grizzled","Gross","Grotesque","Grouchy","Grounded","Growing","Growling","Grown","Grubby","Gruesome","Grumpy","Guilty","Gullible","Gummy",
+                "Hairy","Half","Handmade","Handsome","Handy","Happy","Happy-go-lucky","Hard","Hard-to-find","Harmful","Harmless","Harmonious","Harsh","Hasty","Hateful","Haunting","Healthy","Heartfelt","Hearty","Heavenly","Heavy","Hefty","Helpful","Helpless","Hidden","Hideous","High","High-level","Hilarious","Hoarse","Hollow","Homely","Honest","Honorable","Honored","Hopeful","Horrible","Hospitable","Hot","Huge","Humble","Humiliating","Humming","Humongous","Hungry","Hurtful","Husky",
+                "Icky","Icy","Ideal","Idealistic","Identical","Idle","Idiotic","Idolized","Ignorant","Ill","Illegal","Ill-fated","Ill-informed","Illiterate","Illustrious","Imaginary","Imaginative","Immaculate","Immaterial","Immediate","Immense","Impassioned","Impeccable","Impartial","Imperfect","Imperturbable","Impish","Impolite","Important","Impossible","Impractical","Impressionable","Impressive","Improbable","Impure","Inborn","Incomparable","Incompatible","Incomplete","Inconsequential","Incredible","Indelible","Inexperienced","Indolent","Infamous","Infantile","Infatuated","Inferior","Infinite","Informal","Innocent","Insecure","Insidious","Insignificant","Insistent","Instructive","Insubstantial","Intelligent","Intent","Intentional","Interesting","Internal","International","Intrepid","Ironclad","Irresponsible","Irritating","Itchy",
+                "Jaded","Jagged","Jam-packed","Jaunty","Jealous","Jittery","Joint","Jolly","Jovial","Joyful","Joyous","Jubilant","Judicious","Juicy","Jumbo","Junior","Jumpy","Juvenile",
+                "Kaleidoscopic","Keen","Key","Kind","Kindhearted","Kindly","Klutzy","Knobby","Knotty","Knowledgeable","Knowing","Known","Kooky","Kosher",
+                "Lame","Lanky","Large","Last","Lasting","Late","Lavish","Lawful","Lazy","Leading","Lean","Leafy","Left","Legal","Legitimate","Light","Lighthearted","Likable","Likely","Limited","Limp","Limping","Linear","Lined","Liquid","Little","Live","Lively","Livid","Loathsome","Lone","Lonely","Long","Long-term","Loose","Lopsided","Lost","Loud","Lovable","Lovely","Loving","Low","Loyal","Lucky","Lumbering","Luminous","Lumpy","Lustrous","Luxurious",
+                "Mad","Made-up","Magnificent","Majestic","Major","Male","Mammoth","Married","Marvelous","Masculine","Massive","Mature","Meager","Mealy","Mean","Measly","Meaty","Medical","Mediocre","Medium","Meek","Mellow","Melodic","Memorable","Menacing","Merry","Messy","Metallic","Mild","Milky","Mindless","Miniature","Minor","Minty","Miserable","Miserly","Misguided","Misty","Mixed","Modern","Modest","Moist","Monstrous","Monthly","Monumental","Moral","Mortified","Motherly","Motionless","Mountainous","Muddy","Muffled","Multicolored","Mundane","Murky","Mushy","Musty","Muted","Mysterious",
+                "Naive","Narrow","Nasty","Natural","Naughty","Nautical","Near","Neat","Necessary","Needy","Negative","Neglected","Negligible","Neighboring","Nervous","New","Next","Nice","Nifty","Nimble","Nippy","Nocturnal","Noisy","Nonstop","Normal","Notable","Noted","Noteworthy","Novel","Noxious","Numb","Nutritious","Nutty",
+                "Obedient","Obese","Oblong","Oily","Obvious","Occasional","Odd","Oddball","Offbeat","Offensive","Official","Old","Old-fashioned","Only","Open","Optimal","Optimistic","Opulent","Orange","Orderly","Organic","Ornate","Ornery","Ordinary","Original","Other","Our","Outlying","Outgoing","Outlandish","Outrageous","Outstanding","Oval","Overcooked","Overdue","Overjoyed","Overlooked",
+                "Palatable","Pale","Paltry","Parallel","Parched","Partial","Passionate","Past","Pastel","Peaceful","Peppery","Perfect","Perfumed","Periodic","Perky","Personal","Pertinent","Pesky","Pessimistic","Petty","Phony","Physical","Piercing","Pink","Pitiful","Plain","Plaintive","Plastic","Playful","Pleasant","Pleased","Pleasing","Plump","Plush","Polished","Polite","Political","Pointed","Pointless","Poised","Poor","Popular","Portly","Posh","Positive","Possible","Potable","Powerful","Powerless","Practical","Precious","Present","Prestigious","Pretty","Previous","Pricey","Prickly","Primary","Prime","Pristine","Private","Prize","Probable","Productive","Profitable","Profuse","Proper","Proud","Prudent","Punctual","Pungent","Puny","Pure","Purple","Pushy","Putrid","Puzzled","Puzzling",
+                "Quaint","Qualified","Quarrelsome","Quarterly","Queasy","Querulous","Questionable","Quick","Quick-witted","Quiet","Quintessential","Quirky","Quixotic","Quizzical",
+                "Radiant","Ragged","Rapid","Rare","Rash","Raw","Recent","Reckless","Rectangular","Ready","Real","Realistic","Reasonable","Red","Reflecting","Regal","Regular","Reliable","Relieved","Remarkable","Remorseful","Remote","Repentant","Required","Respectful","Responsible","Repulsive","Revolving","Rewarding","Rich","Rigid","Right","Ringed","Ripe","Roasted","Robust","Rosy","Rotating","Rotten","Rough","Round","Rowdy","Royal","Rubbery","Rundown","Ruddy","Rude","Runny","Rural","Rusty","Sad","Safe","Salty","Same","Sandy","Sane","Sarcastic","Sardonic","Satisfied","Scaly","Scarce","Scared","Scary","Scented","Scholarly","Scientific","Scornful","Scratchy","Scrawny","Second","Secondary","Second-hand","Secret","Self-assured","Self-reliant","Selfish","Sentimental","Separate","Serene","Serious","Serpentine","Several","Severe","Shabby","Shadowy","Shady","Shallow","Shameful","Shameless","Sharp","Shimmering","Shiny","Shocked","Shocking","Shoddy","Short","Short-term","Showy","Shrill","Shy","Sick","Silent","Silky","Silly","Silver","Similar","Simple","Simplistic","Sinful","Single","Sizzling","Skeletal","Skinny","Sleepy","Slight","Slim","Slimy","Slippery","Slow","Slushy","Small","Smart","Smoggy","Smooth","Smug","Snappy","Snarling","Sneaky","Sniveling","Snoopy","Sociable","Soft","Soggy","Solid","Somber","Some","Spherical","Sophisticated","Sore","Sorrowful","Soulful","Soupy","Sour","Spanish","Sparkling","Sparse","Specific","Spectacular","Speedy","Spicy","Spiffy","Spirited","Spiteful","Splendid","Spotless","Spotted","Spry","Square","Squeaky","Squiggly","Stable","Staid","Stained","Stale","Standard","Starchy","Stark","Starry","Steep","Sticky","Stiff","Stimulating","Stingy","Stormy","Straight","Strange","Steel","Strict","Strident","Striking","Striped","Strong","Studious","Stunning","Stupendous","Stupid","Sturdy","Stylish","Subdued","Submissive","Substantial","Subtle","Suburban","Sudden","Sugary","Sunny","Super","Superb","Superficial","Superior","Supportive","Sure-footed","Surprised","Suspicious","Svelte","Sweaty","Sweet","Sweltering","Swift","Sympathetic",
+                "Tall","Talkative","Tame","Tan","Tangible","Tart","Tasty","Tattered","Taut","Tedious","Teeming","Tempting","Tender","Tense","Tepid","Terrible","Terrific","Testy","Thankful","That","These","Thick","Thin","Third","Thirsty","This","Thorough","Thorny","Those","Thoughtful","Threadbare","Thrifty","Thunderous","Tidy","Tight","Timely","Tinted","Tiny","Tired","Torn","Total","Tough","Traumatic","Treasured","Tremendous","Tragic","Trained","Triangular","Tricky","Trifling","Trim","Trivial","Troubled","True","Trusting","Trustworthy","Trusty","Truthful","Tubby","Turbulent","Twin",
+                "Ugly","Ultimate","Unacceptable","Unaware","Uncomfortable","Uncommon","Unconscious","Understated","Unequaled","Uneven","Unfinished","Unfit","Unfolded","Unfortunate","Unhappy","Unhealthy","Uniform","Unimportant","Unique","United","Unkempt","Unknown","Unlawful","Unlined","Unlucky","Unnatural","Unpleasant","Unrealistic","Unripe","Unruly","Unselfish","Unsightly","Unsteady","Unsung","Untidy","Untimely","Untried","Untrue","Unused","Unusual","Unwelcome","Unwieldy","Unwilling","Unwitting","Unwritten","Upbeat","Upright","Upset","Urban","Usable","Used","Useful","Useless","Utilized","Utter",
+                "Vacant","Vague","Vain","Valid","Valuable","Vapid","Variable","Vast","Velvety","Venerated","Vengeful","Verifiable","Vibrant","Vicious","Victorious","Vigilant","Vigorous","Villainous","Violet","Violent","Virtual","Virtuous","Visible","Vital","Vivacious","Vivid","Voluminous",
+                "Wan","Warlike","Warm","Warmhearted","Warped","Wary","Wasteful","Watchful","Waterlogged","Watery","Wavy","Wealthy","Weak","Weary","Webbed","Wee","Weekly","Weepy","Weighty","Weird","Welcome","Well-documented","Well-groomed","Well-informed","Well-lit","Well-made","Well-off","Well-to-do","Well-worn","Wet","Which","Whimsical","Whirlwind","Whispered","White","Whole","Whopping","Wicked","Wide","Wide-eyed","Wiggly","Wild","Willing","Wilted","Winding","Windy","Winged","Wiry","Wise","Witty","Wobbly","Woeful","Wonderful","Wooden","Woozy","Wordy","Worldly","Worn","Worried","Worrisome","Worse","Worst","Worthless","Worthwhile","Worthy","Wrathful","Wretched","Writhing","Wrong","Wry",
+                "Yawning","Yearly","Yellow","Yellowish","Young","Youthful","Yummy",
+                "Zany","Zealous","Zesty","Zigzag"
+            };
+
+            internal static Dictionary<string, IList<string>> Categories { get; } = new Dictionary<string, IList<string>>
+            {
+                ["Birds"] = new List<string>()
+                {
+                    "Blackbird","Bluebird","Bobolink","Bufflehead","Bunting","Catbird","Chickadee","Coot","Cormorant","Crane","Creeper","Crow","Cuckoo","Dove","Duck","Eagle","Finch","Flycatcher","Gnatcatcher","Goose","Harrier","Heron","Hummingbird","Ibis","Jay","Kingfisher","Kinglet","Kite","Lark","Loon","Magpie","Mallard","Merganser","Nighthawk","Oriole","Osprey","Owl","Pelican","Pheasant","Phoebe","Pintail","Robin","Sandpiper","Sapsucker","Snipe","Sparrow","Starling","Swift","Teal","Thrasher","Thrush","Vireo","Vulture","Warbler","Waxwing","Wigeon","Willet","Wood-pewee","Woodpecker","Wren","Hawk"
+                },
+                ["Fish"] = new List<string>()
+                {
+                    "Anchovy","Angler","Barracuda","Bass","Betta","Carp","Catfish","Chub","Cod","Croaker","Dogfish","Eel","Flounder","Goatfish","Grouper","Guppy","Hagfish","Halibut","Herring","Houndshark","Lamprey","Mackerel","Minnow","Mudskipper","Mullet","Opah","Pickerel","Pupfish","Ray","Roach","Salmon","Scat","Shad","Shark","Shiner","Skate","Snoek","Spookfish","Stargazer","Stonecat","Sucker","Swampfish","Sweeper","Tapetail","Tarpon","Tench","Tetra","Toadfish","Trout","Tuna","Wahoo","Weever","Whiff","Wobbegong","Yellowtail","Zander","Zingel"
+                },
+                ["Lizards"] = new List<string>()
+                {
+                    "Anole","Chameleon","Dragon","Gecko","Iguana","Monitor","Skink","Tegu"
+                },
+                ["Reptiles"] =new List<string>()
+                {
+                    "Alligator","Cottonmouth","Crocodile","Rattlesnake","Tortoise","Turtle","Viper"
+                },
+                ["Mammals"] = new List<string>()
+                {
+                    "Armadillo","Badger","Bat","Bear","Beaver","Bison","Bobcat","Cheetah","Chipmunk","Coyote","Dog","Dolphin","Elephant","Elk","Emu","Fox","Gopher","Gorilla","Jackrabbit","Kangaroo","Lemur","Lion","Manatee","Marmot","Monkey","Mouse","Muskrat","Opossum","Porcupine","Prairie Dog","Pronghorn","Raccoon","Rat","Sea Lion","Seal","Sheep","Shrew","Shrew","Skunk","Squirrel","Stoat","Tiger","Unicorn","Vole","Walrus","Weasel","Whale","Zebra"
+                },
+            };
+    }
+        #endregion
     }
 }

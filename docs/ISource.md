@@ -33,8 +33,7 @@ void SavePreviousNames();
 ```
 Persists the previously generated names to the underlying source.
 ##Default Source
-Tyche comes with a default source that uses `json` files as a persistence source.
-The default source will create the files if they don't exist - but they will be empty.
+Tyche comes with a default source that uses values in the source file as its data source.
 
 It serves as a simple example for writing your own implementation.
 ###Available Categories

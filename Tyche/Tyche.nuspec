@@ -14,7 +14,4 @@
     <copyright>Copyright 2016</copyright>
     <tags>Generator</tags>
   </metadata>
-  <files>
-    <file src="Data\" target="Data\"></file>
-  </files>
 </package>
