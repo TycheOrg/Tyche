@@ -9,7 +9,7 @@ namespace Tyche
         /// </summary>
         IList<string> PreviousNames { get; set; }
         /// <summary>
-        /// Words availble to use in generation. Divided by category with the category name as the key.
+        /// Words available to use in generation. Divided by category with the category name as the key.
         /// </summary>
         Dictionary<string, IList<string>> Categories { get; set; }
         /// <summary>

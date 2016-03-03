@@ -65,7 +65,6 @@ namespace Tyche.Tests
             g.SavePreviousNames();
             for (int i = 0; i < 500; i++)
             {
-                //var g = new Generator(new TestSource(Data.Morphemes, null, Data.Categories));
                 var name = g.Generate();
                 Assert.IsTrue(CheckFirstLetters(name), $"{name} does not have matching first letters for each word");
             }

@@ -14,4 +14,7 @@
     <copyright>Copyright 2016</copyright>
     <tags>Generator</tags>
   </metadata>
+  <files>
+    <file src="bin\release\Tyche.dll" target="lib/" />
+  </files>
 </package>
