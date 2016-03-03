@@ -1,7 +1,7 @@
 #Tyche
 [![Join the chat at https://gitter.im/TycheOrg/Tyche](https://badges.gitter.im/TycheOrg/Tyche.svg)](https://gitter.im/TycheOrg/Tyche?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)  [![NuGet](https://img.shields.io/nuget/dt/Tyche.svg)](https://www.nuget.org/packages/Tyche/)  [![NuGet](https://img.shields.io/nuget/v/Tyche.svg)](https://www.nuget.org/packages/Tyche/)
 
-[Tyche](https://en.wikipedia.org/wiki/Tyche) was the Greek god of fortune. (In Rome she is know as Fortuna).
+[Tyche](https://en.wikipedia.org/wiki/Tyche) was the Greek god of fortune. (In Rome she is know as Fortuna). Her symbol was the Cornucopia, hence the logo
 
 Tyche can be used to generate random names for releases or anything else your :heart: may desire.
 
@@ -55,7 +55,7 @@ var g = new Generator();
 var name = g.Generate("Non-existent Category", false);
 ```
 ###GetAvailableCategories
-Gets the list of categories availble from the source.
+Gets the list of categories available from the source.
 ```c#
 var g = new Generator();
 
@@ -83,6 +83,6 @@ Please see the [docs](docs) to learn about the `Source` api, and how to write yo
 ##Future
 Please see the [Roadmap](Roadmap.md) to see what the future may hold for Tyche.
 ##See Also
-See [TycheOrg home repo](https://github.com/TycheOrg/Home) for a general roadmap of the ecosystem.
+See [TycheOrg home repo](https://github.com/TycheOrg/Home) for a general road-map of the ecosystem.
 ##License
-This project is released under the the MIT License. <br/> Please refer to the [LICENSE file](LICENSE) for full details.
+This project is released under the MIT License. <br/> Please refer to the [LICENSE file](LICENSE) for full details.
