@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Tyche
 {
@@ -13,7 +9,7 @@ namespace Tyche
         /// </summary>
         IList<string> PreviousNames { get; set; }
         /// <summary>
-        /// Words availble to use in generation. Divided by category with the category name as the key.
+        /// Words available to use in generation. Divided by category with the category name as the key.
         /// </summary>
         Dictionary<string, IList<string>> Categories { get; set; }
         /// <summary>
