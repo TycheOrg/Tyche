@@ -8,6 +8,7 @@
     <owners>Mordechai Zuber</owners>
     <licenseUrl>https://github.com/TycheOrg/Tyche/blob/master/License.md</licenseUrl>
     <projectUrl>https://github.com/TycheOrg/Tyche/</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/TycheOrg/Tyche/master/colored-cornucopia.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A simple util for generating random names usefull for naming releases</description>
     <releaseNotes>Initial release of Tyche.</releaseNotes>
