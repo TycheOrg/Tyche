@@ -37,11 +37,6 @@ var g = new Generator();
 
 var name = g.Generate();
 ```
-```c#
-var g = new Generator();
-
-var name = g.Generate();
-```
 ####Category Specified
 The generator will use the category provided to pick the second half of the name from.
 ```c#
