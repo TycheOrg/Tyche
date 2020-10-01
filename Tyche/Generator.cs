@@ -8,8 +8,8 @@ namespace Tyche
 {
     public class Generator
     {
-        private static int MAX_RECURSION_COUNT = 1024;
-        
+        private const int MaxRecursionCount = 1024;
+
         private ISource Source { get; }
 
         public Generator(ISource source = null)
@@ -51,7 +51,7 @@ namespace Tyche
 
         public void ResetPreviousNames()
         {
-            Source.ResetPreviousNames();   
+            Source.ResetPreviousNames();
         }
 
         public void SavePreviousNames()
@@ -63,7 +63,7 @@ namespace Tyche
 
         private string GenerateName(string category, int recursionCount)
         {
-            if (recursionCount >= MAX_RECURSION_COUNT)
+            if (recursionCount >= MaxRecursionCount)
             {
                 throw new StackOverflowException("No name can be generated. Choosing another category may help");
             }
