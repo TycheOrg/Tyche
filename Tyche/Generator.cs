@@ -8,7 +8,7 @@ namespace Tyche
 {
     public class Generator
     {
-        private const int MaxRecursionCount = 1024;
+        private const int _maxRecursionCount = 1024;
 
         private ISource Source { get; }
 
@@ -63,7 +63,7 @@ namespace Tyche
 
         private string GenerateName(string category, int recursionCount)
         {
-            if (recursionCount >= MaxRecursionCount)
+            if (recursionCount >= _maxRecursionCount)
             {
                 throw new StackOverflowException("No name can be generated. Choosing another category may help");
             }
